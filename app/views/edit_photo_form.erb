@@ -1,0 +1,11 @@
+<form action='/photos/:id' method='post'>
+	<!-- set the custom method for put -->
+	<input type="hidden" name="_method" value="put">
+
+	<!-- set form fields (will be saved as values in a hash) -->
+	<!-- assume @photo defined in '/photos/:id/edit' -->
+	<input type="text" name="photo_name" value="@photo.name">
+
+	<!-- create 'edit photo' button -->
+	<input type="submit" name="Edit Photo">
+</form>
