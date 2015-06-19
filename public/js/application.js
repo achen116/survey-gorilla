@@ -6,6 +6,7 @@ $(document).ready(function() {
   // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
   createSurveyListener();
   createQuestionListener();
+  createDoneListener();
 });
 
 
@@ -55,7 +56,7 @@ var createQuestionListener = function() {
       console.log("SUCCESS :D");
       console.log(response)
 
-      $('#question').remove();
+      $('#form-container').remove();
       $('.survey_form').append(response);
     })
 
@@ -65,4 +66,33 @@ var createQuestionListener = function() {
     })
 
   })
+}
+
+var createDoneListener = function() {
+  // $('.survey_form').on('submit', '#done', function(event) {
+  //   event.preventDefault();
+
+  //   var route = $('form').attr('action')
+  //   var data = $('#question').serialize()
+
+  //   var request = $.ajax({
+  //     url: route,
+  //     type: 'POST',
+  //     data: data
+  //   })
+
+    // request.done(function(response) {
+    //   console.log("SUCCESS :D");
+    //   console.log(response)
+
+    //   // $('#question').remove();
+    //   // $('.survey_form').append(response);
+    // })
+
+    // request.fail(function(response) {
+    //   console.log("FAIL :(");
+    //   console.log(response)
+    // })
+
+  // })
 }

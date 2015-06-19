@@ -1,33 +1,36 @@
-<h1><%= survey.survey_name %> Questions and Answers</h1>
+<div id="form-container">
 
-<% if @error %>
-  <p><%= @error %></p>
-<% end %>
+  <h1><%= survey.survey_name %> Questions and Answers</h1>
 
-<form id="question" action="/surveys/<%=survey.id%>/questions" method="post">
-  <label>Survey Question:
-    <input type="text" name="question" placeholder="Add Survey Question" value="">
-  </label>
-  <br/>
+  <% if @error %>
+    <p><%= @error %></p>
+  <% end %>
 
-  <label>Survey Question Answer:
-    <input type="text" name="answer1" placeholder="Add Survey Answer" value="">
-  </label>
-  <br/>
+  <form id="question" action="/surveys/<%=survey.id%>/questions" method="post">
+    <label>Survey Question:
+      <input type="text" name="question" placeholder="Add Survey Question" value="">
+    </label>
+    <br/>
 
-  <label>Survey Question Answer:
-    <input type="text" name="answer2" placeholder="Add Survey Answer" value="">
-  </label>
-  <br/>
+    <label>Survey Question Answer:
+      <input type="text" name="answer1" placeholder="Add Survey Answer" value="">
+    </label>
+    <br/>
 
-  <label>Survey Question Answer:
-    <input type="text" name="answer3" placeholder="Add Survey Answer" value="">
-  </label>
-  <br/>
+    <label>Survey Question Answer:
+      <input type="text" name="answer2" placeholder="Add Survey Answer" value="">
+    </label>
+    <br/>
 
-  <input type="submit" value="Add New Question">
-</form>
+    <label>Survey Question Answer:
+      <input type="text" name="answer3" placeholder="Add Survey Answer" value="">
+    </label>
+    <br/>
 
-<form id="survey_done" action="/surveys/<%=survey.id%>/questions" method="post">
-  <input type="submit" value="Done">
-</form>
+    <input type="submit" value="Add New Question">
+  </form>
+
+  <form id="done" action="/surveys/<%=survey.id%>/questions" method="post">
+    <input type="submit" value="Done">
+  </form>
+</div>

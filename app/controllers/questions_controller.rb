@@ -20,9 +20,13 @@ post '/surveys/:id/questions' do
         erb :question_answer_form
       end
     end
-    content_type :html
-    return (erb :_question_answer_form, layout: !request.xhr?, locals: {survey: survey})
-    # redirect "/surveys/#{@survey.id}"
+
+    if request.xhr?
+      content_type :html
+      return (erb :_question_answer_form, layout: !request.xhr?, locals: {survey: survey})
+    else
+      redirect "/surveys/#{survey.id}"
+    end
   else
     @error = "Invalid Question!"
     erb :question_answer_form
