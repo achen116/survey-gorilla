@@ -5,7 +5,7 @@ get '/surveys/:id/questions/new' do
 end
 
 post '/surveys/:id/questions' do
-  @survey = Survey.find(params[:id])
+  survey = Survey.find(params[:id])
   question = Question.new(question: params[:question], survey_id: params[:id])
 
   if question.save
@@ -20,7 +20,13 @@ post '/surveys/:id/questions' do
         erb :question_answer_form
       end
     end
-    redirect "/surveys/#{@survey.id}"
+
+    if request.xhr?
+      content_type :html
+      return (erb :_question_answer_form, layout: !request.xhr?, locals: {survey: survey})
+    else
+      redirect "/surveys/#{survey.id}"
+    end
   else
     @error = "Invalid Question!"
     erb :question_answer_form

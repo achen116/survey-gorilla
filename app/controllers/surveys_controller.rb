@@ -8,13 +8,17 @@ get '/surveys/new' do
 end
 
 post '/surveys' do
+	p "*" * 100
+	p params
+	p "*" * 100
 	survey = Survey.new(
 		survey_name: params[:survey_name],
-		user_id: session[:user_id]#implement sessions!
+		user_id: session[:user_id]
 		)
 
 	if survey.save
-		redirect "/surveys/#{survey.id}/questions/new"
+		content_type :html
+		return (erb :_question_answer_form, layout: !request.xhr?, locals: {survey: survey})
 	else
 		@error = "Invalid!"
 		erb :new_survey_form
