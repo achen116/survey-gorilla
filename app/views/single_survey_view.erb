@@ -1,0 +1,21 @@
+<h1>View survey #<%=@id%></h1>
+
+<div class="container">
+  <h3><%= @survey.title %></h3>
+  <h4><%= @survey.creator_id.name %></h4>
+  <br>
+
+  <div class="questions">
+    <% @survey.questions.each do |question| %>
+      <p><%=question.the_question%></p>
+      <ul>
+        <% question.answers.each do |answer| %>
+          <li><%= answer.the_answer %></li>
+        <% end %>
+      </ul>
+  </div>
+
+  <div class="surveybutton">
+    <a href="/surveys/:id/take_survey">Take Survey!</a>
+  </div>
+</div>
