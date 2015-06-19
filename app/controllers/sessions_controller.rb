@@ -1,5 +1,9 @@
 get '/' do
-  erb :signin
+  if session[:user_id]
+    redirect '/surveys'
+  else
+    erb :signin
+  end
 end
 
 post '/' do
