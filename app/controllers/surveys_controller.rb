@@ -38,12 +38,31 @@ get '/surveys/:id/edit' do
 	# erb :to_the_html_edit_form_view
 end
 
-put 'surveys/:id' do
-	# surveys#update
-	# updates a specific photo
-	# redirects to desired page
-		# (usually '/surveys/:id' => updated changes to specific photo)
+# put 'surveys/:id' do
+# 	# surveys#update
+# 	# updates a specific photo
+# 	# redirects to desired page
+# 		# (usually '/surveys/:id' => updated changes to specific photo)
+# end
+
+post '/surveys/:id' do
+	p "here is parsed"
+	array = params[:content].split('&')
+	array.map!{|pair| pair.split('=')}
+	hash = Hash[array]
+
+	p params
+	answer = ChosenAnswer.new(survey_taker_id: session[:user_id], question_id: hash["question_id"].to_i, question_answer_id: hash["answer_choice"].to_i)
+	if answer.save
+		# redirect "/"
+		p "youre answer saved!"
+	else
+		@errors = answer.errors
+	end
 end
+
+
+
 
 delete '/surveys/:id' do
 	# surveys#destroy
