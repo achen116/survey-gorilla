@@ -1,18 +1,19 @@
-<h1>View survey #<%=@id%></h1>
+<h1>View survey #<%=@survey.id%></h1>
 
 <div class="container">
-  <h3><%= @survey.title %></h3>
-  <h4><%= @survey.creator_id.name %></h4>
+  <h3><%= @survey.survey_name %></h3>
+  <h4><%= @survey.user.name %></h4>
   <br>
 
   <div class="questions">
     <% @survey.questions.each do |question| %>
-      <p><%=question.the_question%></p>
+      <p><%=question.question%></p>
       <ul>
-        <% question.answers.each do |answer| %>
+        <% question.question_answers.each do |answer| %>
           <li><%= answer.the_answer %></li>
         <% end %>
       </ul>
+    <% end %>
   </div>
 
   <div class="surveybutton">
