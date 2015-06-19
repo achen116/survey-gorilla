@@ -3,12 +3,23 @@ $(document).ready(function() {
   createQuestionListener();
   createDoneListener();
   answerButtonListener();
+  $('.form:nth-child(1)').removeClass('inactive')
 });
 
-
+var counter = 1
 var answerButtonListener = function() {
   $('.answer_submit').on("click", function(event){
     event.preventDefault();
+
+    var end = $('#array_length').val()
+
+    $('.form:nth-child('+counter+')').addClass('inactive')
+    counter++
+    $('.form:nth-child('+counter+')').removeClass('inactive')
+
+    if(counter > end){
+      $('.finished').removeClass('inactive');
+    };
 
     var item = $('form').serialize();
     console.log(item)
@@ -20,7 +31,6 @@ var answerButtonListener = function() {
 
     }).done(function(data){
       console.log(data)
-
     })
   })
 }
@@ -112,3 +122,16 @@ var createDoneListener = function() {
 
   // })
 }
+
+
+
+
+
+// $('.form:nth-child(1)').removeClass('inactive')
+
+
+
+
+
+
+
