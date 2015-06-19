@@ -4,7 +4,7 @@
   <p><%= @error %></p>
 <% end %>
 
-<form action="/surveys/<%=survey.id%>/questions" method="post">
+<form id="question" action="/surveys/<%=survey.id%>/questions" method="post">
   <label>Survey Question:
     <input type="text" name="question" placeholder="Add Survey Question" value="">
   </label>
@@ -25,6 +25,9 @@
   </label>
   <br/>
 
-  <input type="submit" value="Done">
+  <input type="submit" value="Add New Question">
+</form>
 
+<form id="survey_done" action="/surveys/<%=survey.id%>/questions" method="post">
+  <input type="submit" value="Done">
 </form>

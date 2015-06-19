@@ -17,7 +17,6 @@ post '/surveys' do
 		)
 
 	if survey.save
-		# redirect "/surveys/#{survey.id}/questions/new"
 		content_type :html
 		return (erb :_question_answer_form, layout: !request.xhr?, locals: {survey: survey})
 	else
