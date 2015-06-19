@@ -1,0 +1,19 @@
+<h1>Please log in.</h1>
+
+<% if @errors %>
+  <p><%= @errors %></p>
+<% end %>
+
+<form action="/" method="post" name="login">
+  <label>Username:
+    <input type="text" name="username" placeholder="username">
+  </label>
+  <br>
+  <label>Password:
+    <input type="password" name="password_hash" placeholder="password">
+  </label>
+  <input type="submit" value="Sign in">
+</form>
+
+<a href="/signup">Or sign up here</a>
+
