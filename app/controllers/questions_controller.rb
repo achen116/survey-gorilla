@@ -5,6 +5,9 @@ get '/surveys/:id/questions/new' do
 end
 
 post '/surveys/:id/questions' do
+  p "^" * 90
+  p params
+  p "^" * 90
   survey = Survey.find(params[:id])
   question = Question.new(question: params[:question], survey_id: params[:id])
 
@@ -23,7 +26,7 @@ post '/surveys/:id/questions' do
 
     if request.xhr?
       content_type :html
-      return (erb :_question_answer_form, layout: !request.xhr?, locals: {survey: survey})
+      return (erb :_question_answer_form, layout: false, locals: {survey: survey})
     else
       redirect "/surveys/#{survey.id}"
     end
