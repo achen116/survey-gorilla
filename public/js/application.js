@@ -56,38 +56,51 @@ var createSurveyListener = function() {
   })
 }
 
-var createQuestionListener = function() {
-  $('.survey_form').on('submit', '#question', function(event) {
-    event.preventDefault();
-
-    var route = $('form').attr('action')
-    var data = $('#question').serialize()
-    var request = $.ajax({
-      url: route,
-      type: 'POST',
-      data: data
-    })
-
-    request.done(function(response) {
-      console.log("SUCCESS :D");
-      console.log(response)
-
-      $('#form-container').remove();
-      $('.survey_form').append(response);
-    })
-
-    request.fail(function(response) {
-      console.log("FAIL :(");
-      console.log(response)
-    })
-
+var sendQuestionData = function () {
+  var route = $('form').attr('action')
+  var data = $('#question').serialize()
+  var request = $.ajax({
+    url: route,
+    type: 'POST',
+    data: data
   })
+
+  request.done(function(response) {
+    console.log("SUCCESS :D");
+    console.log(response)
+
+    $('#question input:text').val('')
+    // $('#form-container').remove();
+    // $('.survey_form').append(response);
+  })
+
+  request.fail(function(response) {
+    console.log("FAIL :(");
+    console.log(response)
+  });
+
+  return request;
+};
+
+var createQuestionListener = function() {
+  $('.survey_form').on('click', '#add_new_question_BTN', function(event) {
+    event.preventDefault();
+    sendQuestionData().done(function () {
+      console.log('did the question ajax stuff thingy')
+    });
+  });
 }
 
 var createDoneListener = function() {
-  // $('.survey_form').on('submit', '#done', function(event) {
-  //   event.preventDefault();
+  $('.form-container').on('click', '#question_submit_done_BTN', function(event) {
+    event.preventDefault();
+    sendQuestionData().done(function(){
+      debugger
+      location.assign('/');
+    });
 
+  })
+}
   //   var route = $('form').attr('action')
   //   var data = $('#question').serialize()
 
@@ -97,18 +110,18 @@ var createDoneListener = function() {
   //     data: data
   //   })
 
-    // request.done(function(response) {
-    //   console.log("SUCCESS :D");
-    //   console.log(response)
+  //   request.done(function(response) {
+  //     console.log("SUCCESS :D");
+  //     console.log(response)
 
-    //   // $('#question').remove();
-    //   // $('.survey_form').append(response);
-    // })
+  //     // $('#question').remove();
+  //     // $('.survey_form').append(response);
+  //   })
 
-    // request.fail(function(response) {
-    //   console.log("FAIL :(");
-    //   console.log(response)
-    // })
+  //   request.fail(function(response) {
+  //     console.log("FAIL :(");
+  //     console.log(response)
+  //   })
 
   // })
-}
+
