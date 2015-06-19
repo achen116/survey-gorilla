@@ -1,15 +1,20 @@
-<h1>Create New Gorilla Survey!</h1>
+<div class="survey_form">
+  <h1>Create New Gorilla Survey!</h1>
 
-<% if @error %>
-  <p><%= @error %></p>
-<% end %>
+  <% if @error %>
+    <p><%= @error %></p>
+  <% end %>
 
-<form action='/surveys' method='post'>
-  <label>Survey Title:
-  	<input type="text" name="survey_name" placeholder="Add Survey Title" value="">
-  </label>
-  <br/>
+  <div class="survey_title">
+    <form id="title" action='/surveys' method='post'>
+      <label>Survey Title:
+      	<input type="text" name="survey_name" placeholder="Add Survey Title" value="">
+      </label>
+      <br/>
 
-	<input type="submit" value="Create Survey">
-</form>
+    	<input type="submit" value="Create Survey">
+    </form>
+  </div>
+
+</div>
 
