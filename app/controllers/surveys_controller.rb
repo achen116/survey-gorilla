@@ -1,5 +1,5 @@
 get '/surveys' do
-	# @surveys = Survey.all
+	@surveys = Survey.all
 	erb :survey_index
 end
 
@@ -8,10 +8,10 @@ get '/surveys/new' do
 end
 
 post '/surveys' do
-	# survey = Survey.new(
-	# 	title: params[:title],
-	# 	user_id: session[:user_id]
-	# 	)
+	survey = Survey.new(
+		survey_name: params[:survey_name],
+		user_id: session[:user_id]#implement sessions!
+		)
 
 	if survey.save
 		redirect "/surveys/#{survey.id}/questions/new"
