@@ -3,8 +3,8 @@ get '/' do
 end
 
 post '/' do
-  @user = User.where(username: params[:username])
-  if @user && params[:password_hash] == @user.password_hash
+  @user = User.where(username: params[:username]).first
+  if @user && (@user.password == params[:password_hash])
     session[:user_id] = @user.id
     redirect '/surveys'
   else
@@ -24,6 +24,7 @@ post '/signup' do
     username: params[:username],
     password_hash: params[:password_hash]
     )
+    user.password = params[:password_hash]
 
     if user.save
       session[:user_id] = user.id
