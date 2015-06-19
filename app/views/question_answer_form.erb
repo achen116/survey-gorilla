@@ -1,0 +1,30 @@
+<h1>Survey Questions and Answers</h1>
+
+<% if @error %>
+  <p><%= @error %></p>
+<% end %>
+
+<form action="/surveys/<%=@survey.id%>/questions" method="post">
+  <label>Survey Question:
+    <input type="text" name="question" placeholder="Add Survey Question" value="">
+  </label>
+  <br/>
+
+  <label>Survey Question Answer:
+    <input type="text" name="answer1" placeholder="Add Survey Answer" value="">
+  </label>
+  <br/>
+
+  <label>Survey Question Answer:
+    <input type="text" name="answer2" placeholder="Add Survey Answer" value="">
+  </label>
+  <br/>
+
+  <label>Survey Question Answer:
+    <input type="text" name="answer3" placeholder="Add Survey Answer" value="">
+  </label>
+  <br/>
+
+  <input type="submit" value="Done">
+
+</form>

@@ -1,0 +1,15 @@
+<h1>Survey Index</h1>
+
+<div class="survey_list">
+  <ul>
+    <% @surveys.each do |survey| %>
+      <li>
+        <a href="/surveys/<%= survey.id %>"><%= survey.survey_name %></a>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<form action='/surveys/new' method='GET'>
+  <input type="submit" value="Create New Survey">
+</form>
