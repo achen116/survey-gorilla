@@ -46,7 +46,6 @@ post '/surveys/:id' do
 	array = params[:content].split('&')
 	array.map!{|pair| pair.split('=')}
 	hash = Hash[array]
-	p hash["question_id"].to_i
 
 	p params
 	answer = ChosenAnswer.new(survey_taker_id: session[:user_id], question_id: hash["question_id"].to_i, question_answer_id: hash["answer_choice"].to_i)
