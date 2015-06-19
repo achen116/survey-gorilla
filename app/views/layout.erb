@@ -17,10 +17,15 @@
 
   <title></title>
 </head>
-<body>
+<div class="header">
+  <a href="/surveys">Home</a><br>
   <% if session[:user_id] %>
     <a href="/signout">Sign out.</a>
   <% end %>
+</div>
+<body>
+  <div class="container">
   <%= yield %>
+  </div>
 </body>
 </html>
