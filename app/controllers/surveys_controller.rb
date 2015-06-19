@@ -8,16 +8,24 @@ get '/surveys/new' do
 end
 
 post '/surveys' do
-	# surveys#create
-	# creates a new photo
-	# redirects to desired page
-		# (usually '/surveys' => updated list with created photo)
+	# survey = Survey.new(
+	# 	title: params[:title],
+	# 	user_id: session[:user_id]
+	# 	)
+
+	if survey.save
+		redirect "/surveys/#{survey.id}/questions/new"
+	else
+		@error = "Invalid!"
+		erb :new_survey_form
+	end
 end
 
+
+
 get '/surveys/:id' do
-	# surveys#show
-	# displays a specific photo
-	# erb :to_the_specific_photo_view
+	@survey = Survey.find(params[:id])
+	erb :single_survey_view
 end
 
 get '/surveys/:id/edit' do
