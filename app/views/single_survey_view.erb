@@ -1,22 +1,30 @@
 <h1>View survey #<%=@survey.id%></h1>
 
 <div class="container">
+  <h2>Survey name:</h2>
   <h3><%= @survey.survey_name %></h3>
+  <h2>Created By:</h2>
   <h4><%= @survey.user.name %></h4>
   <br>
 
   <div class="questions">
+    <%= p @errors if @errors %>
+    <form method="POST" action="/surveys/<%= @survey.id %>">
     <% @survey.questions.each do |question| %>
+    <input type="hidden" name="question_id" value="<%= question.id %>">
       <p><%=question.question%></p>
       <ul>
         <% question.question_answers.each do |answer| %>
-          <li><%= answer.the_answer %></li>
+          <input type="radio" name="answer_choice" class="answer_selection" value="<%= answer.id %>"><%= answer.the_answer %><br>
         <% end %>
       </ul>
     <% end %>
+      <input class="answer_submit" type="submit" value="Submit Answer">
+    </form>
   </div>
 
   <div class="surveybutton">
     <a href="/surveys/:id/take_survey">Take Survey!</a>
   </div>
 </div>
+
